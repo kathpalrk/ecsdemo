@@ -1,0 +1,74 @@
+#
+# The line below states we will base our new image on the Latest Official Ubuntu 
+FROM ubuntu:16.04
+# Apache ENVs
+ENV APACHE_RUN_USER www-data
+ENV APACHE_RUN_GROUP www-data
+ENV APACHE_LOCK_DIR /var/lock/apache2
+ENV APACHE_LOG_DIR /var/log/apache2
+ENV APACHE_PID_FILE /var/run/apache2/apache2.pid
+ENV APACHE_SERVER_NAME moodle.dev
+ 
+#
+# Identify the maintainer of an image
+#LABEL maintainer="myname@somecompany.com"
+ 
+#
+# Update the image to the latest packages
+RUN apt-get update && apt-get upgrade -y
+ 
+#
+# Install NGINX to test.
+RUN apt-get install apache2 -y
+###########PHP 
+RUN apt-get update && apt-get install -yq \
+   curl \
+   # ======= git =====
+   git \
+   # ======= apache =====
+   apache2 \
+   # Install php 7
+   libapache2-mod-php7.0 \
+   php7.0-cli \
+   php7.0-json \
+   php7.0-curl \
+   php7.0-fpm \
+   php7.0-gd \
+   php7.0-ldap \
+   php7.0-mbstring \
+   php7.0-mysql \
+   php7.0-soap \
+   php7.0-sqlite3 \
+   php7.0-xml \
+   php7.0-zip \
+   php7.0-mcrypt \
+   php7.0-intl \
+   php-imagick \
+   php-xdebug \
+   # Install tools
+   nano \
+   graphicsmagick \
+   imagemagick \
+   ghostscript \
+   mysql-client \
+   iputils-ping \
+   apt-utils \
+   locales \
+   && apt-get clean && rm -rf /var/lib/apt/lists/*RUN a2enmod rewrite expires
+COPY web/* /etc/apache2/apache2.conf
+###
+RUN apt-get install curl -y
+
+
+COPY . /var/www/html/
+WORKDIR /var/www/html/
+ 
+#
+# Expose port 80
+EXPOSE 80
+ 
+#
+# Last is the actual command to start up NGINX within our Container
+#CMD ["nginx", "-g", "daemon off;"]
+CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
+

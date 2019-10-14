@@ -38,9 +38,9 @@ $CFG = new stdClass();
 // will be stored.  This database must already have been created         //
 // and a username/password created to access it.                         //
 
-$CFG->dbtype    = 'mysqli';      // 'pgsql', 'mariadb', 'mysqli', 'sqlsrv' or 'oci'
+$CFG->dbtype    = 'mariadb';      // 'pgsql', 'mariadb', 'mysqli', 'sqlsrv' or 'oci'
 $CFG->dblibrary = 'native';     // 'native' only at the moment
-$CFG->dbhost    = '18.202.174.129';  // eg 'localhost' or 'db.isp.com' or IP
+$CFG->dbhost    = '172.17.0.3';  // eg 'localhost' or 'db.isp.com' or IP
 $CFG->dbname    = 'moodle_db';     // database name, eg moodle
 $CFG->dbuser    = 'moodle_dba';   // your database username
 $CFG->dbpass    = 'welcome';   // your database password
@@ -94,7 +94,8 @@ $CFG->dboptions = array(
 // http://docs.moodle.org/en/masquerading
 
 //$CFG->wwwroot   = 'http://localhost';
-$CFG->wwwroot   = 'http://".$_SERVER['HTTP_HOST'].';
+//$CFG->wwwroot   = 'http://".$_SERVER['HTTP_HOST'].';
+$CFG->wwwroot   = "http://".$_SERVER['HTTP_HOST'];
 $CFG->dataroot = '/var/www/moodledata';
 
 //=========================================================================

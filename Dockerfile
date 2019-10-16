@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER "Rahul Kathpal"
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install -yq --no-install-recommends \
+RUN apt-get update && apt-get install redis-server && apt-get install -yq --no-install-recommends \
    apt-utils \
    curl \
    # Install git
@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
    apache2 \
    # Install php 7.2
    libapache2-mod-php7.2 \
+   php-redis \
    php7.2-cli \
    php7.2-json \
    php7.2-curl \
@@ -60,5 +61,7 @@ RUN apt-get install curl -y
 COPY . /var/www/html/
 WORKDIR /var/www/html/
 EXPOSE 80 443
+ENTRYPOINT redis-server
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
+CMD bash
 

@@ -60,6 +60,4 @@ RUN apt-get install curl -y
 COPY . /var/www/html/
 WORKDIR /var/www/html/
 EXPOSE 80 443
-ENTRYPOINT redis-server
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
-

@@ -1,9 +1,10 @@
 FROM ubuntu:18.04
 MAINTAINER "Rahul Kathpal"
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install redis-server && apt-get install -yq --no-install-recommends \
+RUN apt-get update && apt-get install -yq --no-install-recommends \
    apt-utils \
    curl \
+   redis-server \
    # Install git
    git \
    # Install apache

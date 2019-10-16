@@ -63,5 +63,4 @@ WORKDIR /var/www/html/
 EXPOSE 80 443
 ENTRYPOINT redis-server
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
-CMD bash
 

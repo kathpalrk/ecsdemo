@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 MAINTAINER "Rahul Kathpal"
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install redis-server && apt-get install -yq --no-install-recommends \
+RUN apt-get update && apt-get install && apt-get install -yq --no-install-recommends \
    apt-utils \
    curl \
    # Install git
@@ -10,7 +10,6 @@ RUN apt-get update && apt-get install redis-server && apt-get install -yq --no-i
    apache2 \
    # Install php 7.2
    libapache2-mod-php7.2 \
-   php-redis \
    php7.2-cli \
    php7.2-json \
    php7.2-curl \

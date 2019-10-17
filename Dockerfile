@@ -5,6 +5,7 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
    apt-utils \
    curl \
    redis-server \
+   redis-tools \
    # Install git
    git \
    # Install apache
@@ -61,6 +62,6 @@ RUN apt-get install curl -y
 
 COPY . /var/www/html/
 WORKDIR /var/www/html/
-EXPOSE 80 443
+EXPOSE 80 443 
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
-CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+ENTRYPOINT redis-server --daemonize yes && bash

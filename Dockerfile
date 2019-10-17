@@ -64,4 +64,4 @@ COPY . /var/www/html/
 WORKDIR /var/www/html/
 EXPOSE 80 443 
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
-CMD ["/usr/local/bin/redis-server --daemonize yes"]
+CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]

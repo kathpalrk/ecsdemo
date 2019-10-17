@@ -5,7 +5,6 @@ RUN apt-get update && apt-get install -yq --no-install-recommends \
    apt-utils \
    curl \
    redis-server \
-   redis-tools \
    # Install git
    git \
    # Install apache
@@ -62,7 +61,8 @@ RUN apt-get install curl -y
 
 COPY . /var/www/html/
 WORKDIR /var/www/html/
+RUN chmod +x /var/www/html/docker-entrypoint.sh
 EXPOSE 80 443 
-CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
 ENTRYPOINT ["docker-entrypoint.sh"]
-CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
+CMD ["redis-server", "/usr/local/etc/redis/redis.conf"] 

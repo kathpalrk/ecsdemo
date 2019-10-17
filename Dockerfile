@@ -63,6 +63,6 @@ RUN apt-get install curl -y
 COPY . /var/www/html/
 WORKDIR /var/www/html/
 EXPOSE 80 443 
+ENTRYPOINT ["/usr/bin/redis-server"]
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
-ENTRYPOINT ["docker-entrypoint.sh"]
-CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
+

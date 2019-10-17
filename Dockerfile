@@ -64,4 +64,4 @@ COPY . /var/www/html/
 WORKDIR /var/www/html/
 EXPOSE 80 443 
 CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
-ENTRYPOINT redis-server --daemonize yes && bash
+CMD ["red-server &"]
